@@ -31,12 +31,12 @@ public class HandgunFire : MonoBehaviour
 
     IEnumerator FiringGun()
     {
-        gunFire.Play();
+        //gunFire.Play();
         extraCross.SetActive(true);
         GlobalAmmo.handgunAmmoCount -= 1;
-        handgun.GetComponent<Animator>().Play("HandgunFire");
+        //handgun.GetComponent<Animator>().Play("HandgunFire");
         yield return new WaitForSeconds(0.5f);
-        handgun.GetComponent<Animator>().Play("New State");
+        //handgun.GetComponent<Animator>().Play("New State");
         extraCross.SetActive(false);
         yield return new WaitForSeconds(0.1f);
         canFire = true;
@@ -44,7 +44,7 @@ public class HandgunFire : MonoBehaviour
 
     IEnumerator EmptyGun()
     {
-        emptyGunSound.Play();
+        //emptyGunSound.Play();
         yield return new WaitForSeconds(0.6f);
         canFire = true;
     }

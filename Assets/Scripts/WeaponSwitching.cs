@@ -3,9 +3,14 @@ using UnityEngine;
 public class WeaponSwitching : MonoBehaviour
 {
 
+    public PlayerShooting playerShooting;
+    
     public int selectedWeapon = 0;
+
+    public Gun[] allWeapons;
     void Start()
     {
+        allWeapons = GetComponentsInChildren<Gun>(true);
         SelectWeapon();
     }
 
@@ -62,9 +67,15 @@ public class WeaponSwitching : MonoBehaviour
         foreach (Transform weapon in transform)
         {
             if (i == selectedWeapon)
+            {
                 weapon.gameObject.SetActive(true);
-            else 
+                //added
+                playerShooting.gun = weapon.GetComponent<Gun>();
+            }
+            else
+            {
                 weapon.gameObject.SetActive(false);
+            }
             i++;
 
         }

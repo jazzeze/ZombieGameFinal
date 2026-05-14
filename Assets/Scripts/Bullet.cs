@@ -21,9 +21,21 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Zombie"))
         {
             collision.gameObject.GetComponent<Zombie>().TakeDamage(bulletDamage);
+
+            CreateBloodSprayEffect(collision);
+
             Destroy(gameObject);
         }
         
         Destroy(gameObject);
+    }
+
+    private void CreateBloodSprayEffect(Collision collision)
+    {
+        ContactPoint contact = collision.contacts[0];
+
+        GameObject bloodSprayPrefab = Instantiate(GlobalReferences.Instance.bloodSprayEffect, contact.point, Quaternion.LookRotation(contact.normal));
+
+        bloodSprayPrefab.transform.SetParent(collision.gameObject.transform);
     }
 }
